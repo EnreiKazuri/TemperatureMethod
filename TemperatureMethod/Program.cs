@@ -11,7 +11,7 @@ namespace TemperatureMethod
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("Select which file to Read:\n(1) CSV\n(2) Json\n(3) XML");
+                Console.WriteLine("Select which file to Read:\n(1) CSV\n(2) Json\n(3) XML\n(4) Exit");
                 string decision = Console.ReadLine();
                 switch (decision)
                 {
@@ -32,6 +32,9 @@ namespace TemperatureMethod
                         xmlFile.ExecuteRead();
                         xmlFile.ExecuteWrite();
                         Console.ReadKey();
+                        break;
+                    case "4":
+                        Environment.Exit(0);
                         break;
                     default:
                         Console.WriteLine("Please select a valid Choice");
