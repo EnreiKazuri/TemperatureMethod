@@ -1,0 +1,40 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using TemperatureMethod.Models;
+
+namespace TemperatureMethod.SummariesByFile
+{
+    public abstract class RecordSummary
+    {
+        public string pathToRead = @"..\..\..\Sample-Files\data";
+        public string pathToWrite = @"..\..\..\Sample-Files\data";
+        public abstract string extension { get;}
+        public ReadingSummary summary;
+        public RecordSummary(){ this.summary = new ReadingSummary(); pathToRead += extension; pathToWrite += extension + ".out.csv"; }
+        public void ExecuteRead()
+        {
+            ReadFile();
+            summary.PopulateValues();
+        }
+        public void ExecuteWrite()
+        {
+            WriteFile();
+        }
+        public abstract void ReadFile();
+        
+        public void WriteFile()
+        {
+           File.WriteAllText(pathToWrite, summary.StatsString);
+        }
+        public void testPrint()
+        {
+            foreach (var item in summary.FileReadings)
+            {
+                Console.WriteLine("ID: {0}, Location: {1}, Date: {2}, Meassure: {3}", item.ID, item.Location, item.Date, item.Meassure);
+            }
+        }
+    }
+}
