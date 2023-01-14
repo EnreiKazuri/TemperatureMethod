@@ -29,12 +29,5 @@ namespace TemperatureMethod.SummariesByFile
         {
            File.WriteAllText(pathToWrite, summary.StatsString);
         }
-        public void testPrint()
-        {
-            foreach (var item in summary.FileReadings)
-            {
-                Console.WriteLine("ID: {0}, Location: {1}, Date: {2}, Meassure: {3}", item.ID, item.Location, item.Date, item.Meassure);
-            }
-        }
     }
 }
